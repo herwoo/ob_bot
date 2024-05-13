@@ -20,8 +20,10 @@ user_id = payload['user']['id']
 keyword = payload['view']['state']['values']['kw']['plain_text_input-action']['value']
 
 def convert2time(my_date):
-    return datetime.strptime(my_date, '%b. %d, %Y')
-
+    try:
+        return datetime.strptime(my_date, '%b. %d, %Y')
+    except:
+        return datetime.strptime(my_date, '%b %d, %Y')
 url = f"https://jobs.disneycareers.com/search-jobs/results?ActiveFacetID=0&CurrentPage=1&RecordsPerPage=1000&Distance=100&RadiusUnitType=0&Keywords=&Location=&ShowRadius=False&IsPagination=False&CustomFacetName=industry&FacetTerm=hulu&FacetType=5&SearchResultsModuleName=Search+Results&SearchFiltersModuleName=Search+Filters&SortCriteria=5&SortDirection=1&SearchType=7&OrganizationIds=391-28648&RefinedKeywords%5B0%5D={keyword}&PostalCode=&ResultsType=0&fc=&fl=&fcf=&afc=&afl=&afcf="
 
 r = requests.get(url)
