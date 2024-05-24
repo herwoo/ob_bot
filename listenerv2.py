@@ -28,7 +28,6 @@ def process(client: SocketModeClient, req: SocketModeRequest):
     subprocess.Popen([f"{cwd}/cnc.py", json.dumps(req.payload), req.type])
 
 # Add a new listener to receive messages from Slack
-# You can add more listeners like this
 client.socket_mode_request_listeners.append(process)
 # Establish a WebSocket connection to the Socket Mode servers
 client.connect()
